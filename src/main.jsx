@@ -5,6 +5,7 @@ import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import ErrorPage from "./components/ErrorPage";
 import Hero from "./components/Hero";
+import MealDetails from "./components/MealDetails";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ const router = createBrowserRouter([
         element: <Hero />,
       },
     ],
+  },
+  {
+    path: "/meal/:mealId",
+    element: <MealDetails />,
+    loader: ({params}) => fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.mealId}`)
   },
 ]);
 
